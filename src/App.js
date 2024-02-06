@@ -1,7 +1,10 @@
+import {Launch} from "./components/Launch/Launch";
+import {Launches} from "./components/Launches/Launches";
+
 const App = () => {
     return (
         <div>
-            hw2.1
+            <Launches/>
         </div>
     );
 };
