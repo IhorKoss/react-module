@@ -1,7 +1,9 @@
+import {CommentContainer} from "./components/CommentContainer/CommentContainer";
+
 const App = () => {
     return (
         <div>
-            hw3.2
+            <CommentContainer/>
         </div>
     );
 };
