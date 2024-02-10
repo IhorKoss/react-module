@@ -4,7 +4,7 @@ import {useEffect} from "react";
 const Car = ({car,setCarForUpdate,setTrigger}) => {
     const {id,brand,price,year} =car
     const deleting=async ()=>{
-        await carService.deleteById(car.id);
+        await carService.deleteById(id);
         setTrigger(prev=>!prev);
     }
     return (
