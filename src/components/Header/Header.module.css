@@ -1,0 +1,28 @@
+*{
+    font-family: Arial;
+}
+
+.Header{
+    height: 10vh;
+    background-color: #c0c0c0;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.Header a{
+    text-decoration: none;
+    color: black;
+    font-size: 32px;
+}
+.Header a:hover{
+    text-decoration: underline;
+    color: darkblue;
+}
+
+.Header a[class='active']{
+    color: #0060c2;
+    font-size: 32px;
+    font-weight: bold;
+}
