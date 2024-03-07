@@ -1,23 +1,20 @@
-import {useEffect, useState} from "react";
-import {characterService} from "../../services/characterService";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
 import {Character} from "./Character";
-import {json, useSearchParams} from "react-router-dom";
+import {charactersActions} from "../../store/slices/charactersSlice";
 
-const Characters = ({characters}) => {
-    const charArr=characters.map(character=>character.slice(-4))
+const Characters = () => {
+    const {episode,characters}=useSelector(state => state.characters)
+    const dispatch=useDispatch();
+    const charArr=episode.map(character=>character.slice(-4))
     const charIds=JSON.stringify(charArr.map(character=>+character.replace(/\D/g,'')))
-    const [charactersArray, setCharactersArray] = useState([])
-    console.log(charIds)
     useEffect(() => {
-        characterService.byId(charIds).then(({data})=>setCharactersArray(data))
+        dispatch(charactersActions.getCharacters(charIds))
     }, []);
-    console.log(charactersArray)
-
     return (
         <div>
-            <button>PREV</button>
-            <button>NEXT</button>
-            {charactersArray.map(character=><Character key={character.id} character={character}/>)}
+            {characters.map(character=><Character key={character.id} character={character}/>)}
         </div>
     );
 };

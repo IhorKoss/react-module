@@ -1,17 +1,20 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useState} from "react";
-import {episodeService} from "../services/episodeService";
+import {useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
+
 import {Characters} from "../components/Characters/Characters";
+import {charactersActions} from "../store/slices/charactersSlice";
 
 const CharactersPage = () => {
     const {id}=useParams();
-    const [characters, setCharacters] = useState([])
+    const dispatch=useDispatch();
+    const {episode}=useSelector(state => state.characters)
     useEffect(() => {
-        episodeService.byId(id).then(({data})=>setCharacters(data.characters))
+        dispatch(charactersActions.getById(id))
     }, []);
     return (
         <div>
-            {characters&&<Characters characters={characters}/>}
+            {episode.length>0&&<Characters/>}
         </div>
     );
 };
